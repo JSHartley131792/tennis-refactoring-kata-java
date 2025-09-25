@@ -51,10 +51,13 @@ public class TennisGame1 implements TennisGame {
         {
             for (int i=1; i<3; i++)
             {
-                int tempScore=0;
-                if (i==1) tempScore = player1Score;
-                else { score+="-"; tempScore = player2Score;}
-                score = getScoreDifferenceString(tempScore, score);
+                if (i==1) {
+                    score = getScoreDifferenceString(player1Score, score);
+                }
+                else { 
+                    score+="-"; 
+                    score = getScoreDifferenceString(player2Score, score);
+                }
             }
         }
         return score;
