@@ -54,23 +54,28 @@ public class TennisGame1 implements TennisGame {
                 int tempScore=0;
                 if (i==1) tempScore = player1Score;
                 else { score+="-"; tempScore = player2Score;}
-                switch(tempScore)
-                {
-                    case 0:
-                        score+="Love";
-                        break;
-                    case 1:
-                        score+="Fifteen";
-                        break;
-                    case 2:
-                        score+="Thirty";
-                        break;
-                    case 3:
-                        score+="Forty";
-                        break;
-                }
+                score = getScoreDifferenceString(tempScore, score);
             }
         }
         return score;
+    }
+
+    public String getScoreDifferenceString(int playerScore, String scoreString) {
+        switch(playerScore)
+                {
+                    case 0:
+                        scoreString+="Love";
+                        break;
+                    case 1:
+                        scoreString+="Fifteen";
+                        break;
+                    case 2:
+                        scoreString+="Thirty";
+                        break;
+                    case 3:
+                        scoreString+="Forty";
+                        break;
+                }
+        return scoreString;
     }
 }
