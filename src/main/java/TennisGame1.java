@@ -42,10 +42,10 @@ public class TennisGame1 implements TennisGame {
         }
         else if (player1Score>=4 || player2Score>=4)
         {
-            int minusResult = player1Score-player2Score;
-            if (minusResult==1) score ="Advantage player1";
-            else if (minusResult ==-1) score ="Advantage player2";
-            else if (minusResult>=2) score = "Win for player1";
+            int scoreDifference = player1Score-player2Score;
+            if (scoreDifference==1) score ="Advantage player1";
+            else if (scoreDifference ==-1) score ="Advantage player2";
+            else if (scoreDifference>=2) score = "Win for player1";
             else score ="Win for player2";
         }
         else
