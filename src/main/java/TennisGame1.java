@@ -68,23 +68,11 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScoreTiedString(int player1Score) {
-        String score = "";
-        switch (player1Score)
-            {
-                case 0:
-                        score = "Love-All";
-                    break;
-                case 1:
-                        score = "Fifteen-All";
-                    break;
-                case 2:
-                        score = "Thirty-All";
-                    break;
-                default:
-                        score = "Deuce";
-                    break;
-                
-            }
-            return score;
+        return switch (player1Score) {
+                case 0 -> "Love-All";
+                case 1 -> "Fifteen-All";
+                case 2 -> "Thirty-All";
+                default -> "Deuce";
+        };
     }
 }
