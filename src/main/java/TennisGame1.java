@@ -38,14 +38,15 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String scoreName(int playerScore) {
-        return switch(playerScore)
+        Score score;
+        switch(playerScore)
                 {
-                    case 0 -> "Love";
-                    case 1 -> "Fifteen";
-                    case 2 -> "Thirty";
-                    case 3 -> "Forty";
-                    default -> "";
+                    case 0 -> score = new Love();
+                    case 1 -> score = new Fifteen();
+                    case 2 -> score = new Thirty();
+                    default -> score = new Forty();
                 };
+        return score.getScoreName();
     }
 
     public String tieScore(int player1Score) {
@@ -53,5 +54,37 @@ public class TennisGame1 implements TennisGame {
                 case 0, 1, 2 -> scoreName(player1Score) + "-All";
                 default -> "Deuce";
         };
+    }
+    abstract class Score {
+        String scoreName;
+        abstract String getScoreName();
+    }
+    class Love extends Score {
+        String scoreName;
+        @Override
+        public String getScoreName() {
+            return "Love";
+        }
+    }
+    class Fifteen extends Score {
+        String scoreName;
+        @Override
+        public String getScoreName() {
+            return "Fifteen";
+        }
+    }
+    class Thirty extends Score {
+        String scoreName;
+        @Override
+        public String getScoreName() {
+            return "Thirty";
+        }
+    }
+    class Forty extends Score {
+        String scoreName;
+        @Override
+        public String getScoreName() {
+            return "Forty";
+        }
     }
 }
