@@ -33,11 +33,11 @@ public class TennisGame1 implements TennisGame {
         }
         else
         {
-            return getScoreDifferenceString(player1Score) + "-" + getScoreDifferenceString(player2Score);
+            return scoreName(player1Score) + "-" + scoreName(player2Score);
         }
     }
 
-    public String getScoreDifferenceString(int playerScore) {
+    public String scoreName(int playerScore) {
         return switch(playerScore)
                 {
                     case 0 -> "Love";
@@ -50,7 +50,7 @@ public class TennisGame1 implements TennisGame {
 
     public String getScoreTiedString(int player1Score) {
         return switch (player1Score) {
-                case 0, 1, 2 -> getScoreDifferenceString(player1Score) + "-All";
+                case 0, 1, 2 -> scoreName(player1Score) + "-All";
                 default -> "Deuce";
         };
     }
