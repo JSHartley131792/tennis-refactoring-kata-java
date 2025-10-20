@@ -63,6 +63,9 @@ public class TennisGame1 implements TennisGame {
                     case 3:
                         scoreString+="Forty";
                         break;
+                    default:
+                        scoreString="";
+                        break;
                 }
         return scoreString;
     }
