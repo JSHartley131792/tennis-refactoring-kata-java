@@ -21,7 +21,7 @@ public class TennisGame1 implements TennisGame {
     public String getScore() {
         if (player1Score==player2Score)
         {
-            return getScoreTiedString(player1Score);
+            return tieScore(player1Score);
         }
         else if (player1Score>=4 || player2Score>=4)
         {
@@ -48,7 +48,7 @@ public class TennisGame1 implements TennisGame {
                 };
     }
 
-    public String getScoreTiedString(int player1Score) {
+    public String tieScore(int player1Score) {
         return switch (player1Score) {
                 case 0, 1, 2 -> scoreName(player1Score) + "-All";
                 default -> "Deuce";
