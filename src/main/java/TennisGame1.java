@@ -34,40 +34,20 @@ public class TennisGame1 implements TennisGame {
         }
         else
         {
-            for (int i=1; i<3; i++)
-            {
-                if (i==1) {
-                    score = getScoreDifferenceString(player1Score, score);
-                }
-                else { 
-                    score+="-"; 
-                    score = getScoreDifferenceString(player2Score, score);
-                }
-            }
+            return getScoreDifferenceString(player1Score) + "-" + getScoreDifferenceString(player2Score);
         }
         return score;
     }
 
-    public String getScoreDifferenceString(int playerScore, String scoreString) {
-        switch(playerScore)
+    public String getScoreDifferenceString(int playerScore) {
+        return switch(playerScore)
                 {
-                    case 0:
-                        scoreString+="Love";
-                        break;
-                    case 1:
-                        scoreString+="Fifteen";
-                        break;
-                    case 2:
-                        scoreString+="Thirty";
-                        break;
-                    case 3:
-                        scoreString+="Forty";
-                        break;
-                    default:
-                        scoreString="";
-                        break;
-                }
-        return scoreString;
+                    case 0 -> "Love";
+                    case 1 -> "Fifteen";
+                    case 2 -> "Thirty";
+                    case 3 -> "Forty";
+                    default -> "";
+                };
     }
 
     public String getScoreTiedString(int player1Score) {
