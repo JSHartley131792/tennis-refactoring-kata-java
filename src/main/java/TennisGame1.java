@@ -50,9 +50,7 @@ public class TennisGame1 implements TennisGame {
 
     public String getScoreTiedString(int player1Score) {
         return switch (player1Score) {
-                case 0 -> "Love-All";
-                case 1 -> "Fifteen-All";
-                case 2 -> "Thirty-All";
+                case 0, 1, 2 -> getScoreDifferenceString(player1Score) + "-All";
                 default -> "Deuce";
         };
     }
