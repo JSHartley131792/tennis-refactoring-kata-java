@@ -37,27 +37,23 @@ public class TennisGame1 implements TennisGame {
         }
     }
 
+    public Score getScoreObject(int playerScore) {
+        return switch(playerScore)
+            {
+                case 0 -> new Love();
+                case 1 -> new Fifteen();
+                case 2 -> new Thirty();
+                default -> new Forty();
+            };
+    }
+
     public String scoreName(int playerScore) {
-        Score score;
-        switch(playerScore)
-                {
-                    case 0 -> score = new Love();
-                    case 1 -> score = new Fifteen();
-                    case 2 -> score = new Thirty();
-                    default -> score = new Forty();
-                };
+        Score score = getScoreObject(playerScore);
         return score.getScoreName();
     }
 
     public String tieScore(int player1Score) {
-        Score score;
-        switch(player1Score)
-                {
-                    case 0 -> score = new Love();
-                    case 1 -> score = new Fifteen();
-                    case 2 -> score = new Thirty();
-                    default -> score = new Forty();
-                };
+        Score score = getScoreObject(player1Score);
         return score.getTieString();
     }
     abstract class Score {
