@@ -8,6 +8,9 @@ public class TennisGame1 implements TennisGame {
             this.playerName = playerName;
             this.score = score;
         }
+        boolean couldWin() {
+            return score >=4;
+        }
     }
 
     private Player playerOne;
@@ -28,7 +31,7 @@ public class TennisGame1 implements TennisGame {
     public String getScore() {
         if (playerOne.score == playerTwo.score) {
             return tieScore(playerOne.score);
-        } else if (playerOne.score >= 4 || playerTwo.score >= 4) {
+        } else if (playerOne.couldWin() || playerTwo.couldWin()) {
             int scoreDifference = playerOne.score - playerTwo.score;
             if (scoreDifference == 1)
                 return "Advantage player1";
