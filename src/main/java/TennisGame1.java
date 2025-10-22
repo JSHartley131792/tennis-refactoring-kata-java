@@ -50,14 +50,22 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String tieScore(int player1Score) {
-        return switch (player1Score) {
-                case 0, 1, 2 -> scoreName(player1Score) + "-All";
-                default -> "Deuce";
-        };
+        Score score;
+        switch(player1Score)
+                {
+                    case 0 -> score = new Love();
+                    case 1 -> score = new Fifteen();
+                    case 2 -> score = new Thirty();
+                    default -> score = new Forty();
+                };
+        return score.getTieString();
     }
     abstract class Score {
         String scoreName;
         abstract String getScoreName();
+        String getTieString() {
+            return getScoreName() + "-All";
+        };
     }
     class Love extends Score {
         String scoreName;
@@ -86,5 +94,9 @@ public class TennisGame1 implements TennisGame {
         public String getScoreName() {
             return "Forty";
         }
+        @Override
+        public String getTieString() {
+            return "Deuce";
+        };
     }
 }
