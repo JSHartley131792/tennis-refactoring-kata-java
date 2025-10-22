@@ -14,6 +14,9 @@ public class TennisGame1 implements TennisGame {
         boolean isBeating(Player opponent) {
             return score > opponent.score;
         }
+        boolean hasAdvantage(Player opponent) {
+            return couldWin() && Math.abs(score - opponent.score) == 1;
+        }
     }
 
     private Player playerOne;
@@ -35,13 +38,16 @@ public class TennisGame1 implements TennisGame {
         if (playerOne.score == playerTwo.score) {
             return tieScore(playerOne.score);
         } else if (playerOne.couldWin() || playerTwo.couldWin()) {
-            int scoreDifference = Math.abs(playerOne.score - playerTwo.score);
             if (playerOne.isBeating(playerTwo)) {
-                if (scoreDifference == 1) return "Advantage " + playerOne.playerName;
-                else return "Win for " + playerOne.playerName;
+                if (playerOne.hasAdvantage(playerTwo)) 
+                    return "Advantage " + playerOne.playerName;
+                else 
+                    return "Win for " + playerOne.playerName;
             } else {
-                if (scoreDifference == 1) return "Advantage " + playerTwo.playerName;
-                else return "Win for " + playerTwo.playerName;
+                if (playerTwo.hasAdvantage(playerOne)) 
+                    return "Advantage " + playerTwo.playerName;
+                else 
+                    return "Win for " + playerTwo.playerName;
             }
         } else {
             return scoreName(playerOne.score) + "-" + scoreName(playerTwo.score);
