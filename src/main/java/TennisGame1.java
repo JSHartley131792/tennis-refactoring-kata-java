@@ -1,28 +1,35 @@
 
 public class TennisGame1 implements TennisGame {
 
-    private int player1Score = 0;
-    private int player2Score = 0;
-    private String player1Name;
-    private String player2Name;
+    class Player {
+        private String playerName;
+        private int score;
+        public Player(String playerName, int score) {
+            this.playerName = playerName;
+            this.score = score;
+        }
+    }
 
+    private Player playerOne;
+    private Player playerTwo;
+    
     public TennisGame1(String player1Name, String player2Name) {
-        this.player1Name = player1Name;
-        this.player2Name = player2Name;
+        this.playerOne = new Player(player1Name, 0);
+        this.playerTwo = new Player(player2Name, 0);
     }
 
     public void wonPoint(String playerName) {
         if (playerName == "player1")
-            player1Score += 1;
+            playerOne.score += 1;
         else
-            player2Score += 1;
+            playerTwo.score += 1;
     }
 
     public String getScore() {
-        if (player1Score == player2Score) {
-            return tieScore(player1Score);
-        } else if (player1Score >= 4 || player2Score >= 4) {
-            int scoreDifference = player1Score - player2Score;
+        if (playerOne.score == playerTwo.score) {
+            return tieScore(playerOne.score);
+        } else if (playerOne.score >= 4 || playerTwo.score >= 4) {
+            int scoreDifference = playerOne.score - playerTwo.score;
             if (scoreDifference == 1)
                 return "Advantage player1";
             else if (scoreDifference == -1)
@@ -32,7 +39,7 @@ public class TennisGame1 implements TennisGame {
             else
                 return "Win for player2";
         } else {
-            return scoreName(player1Score) + "-" + scoreName(player2Score);
+            return scoreName(playerOne.score) + "-" + scoreName(playerTwo.score);
         }
     }
 
