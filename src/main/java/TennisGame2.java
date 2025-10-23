@@ -15,17 +15,20 @@ public class TennisGame2 implements TennisGame {
 
     public String getScore() {
         String score = "";
-        if (playerOnePoints == playerTwoPoints && playerOnePoints < 4) {
-            if (playerOnePoints == 0)
-                score = "Love";
-            if (playerOnePoints == 1)
-                score = "Fifteen";
-            if (playerOnePoints == 2)
-                score = "Thirty";
-            score += "-All";
+        if (playerOnePoints == playerTwoPoints) {
+            if (playerOnePoints < 4) {
+                if (playerOnePoints == 0)
+                    score = "Love";
+                if (playerOnePoints == 1)
+                    score = "Fifteen";
+                if (playerOnePoints == 2)
+                    score = "Thirty";
+                score += "-All";
+            }
+            if (playerOnePoints >= 3) {
+                score = "Deuce";
+            }
         }
-        if (playerOnePoints == playerTwoPoints && playerOnePoints >= 3)
-            score = "Deuce";
 
         if (playerOnePoints > 0 && playerTwoPoints == 0) {
             if (playerOnePoints == 1)
