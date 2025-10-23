@@ -15,7 +15,7 @@ public class TennisGame1 implements TennisGame {
             return score > opponent.score;
         }
         boolean hasAdvantage(Player opponent) {
-            return couldWin() && Math.abs(score - opponent.score) == 1;
+            return couldWin() && score - opponent.score == 1;
         }
     }
 
