@@ -39,19 +39,20 @@ public class TennisGame1 implements TennisGame {
             return tieScore(playerOne.score);
         } else if (playerOne.couldWin() || playerTwo.couldWin()) {
             if (playerOne.isBeating(playerTwo)) {
-                if (playerOne.hasAdvantage(playerTwo)) 
-                    return "Advantage " + playerOne.playerName;
-                else 
-                    return "Win for " + playerOne.playerName;
+                return hasAdvantageOrWin(playerOne, playerTwo);
             } else {
-                if (playerTwo.hasAdvantage(playerOne)) 
-                    return "Advantage " + playerTwo.playerName;
-                else 
-                    return "Win for " + playerTwo.playerName;
+                return hasAdvantageOrWin(playerTwo, playerOne);
             }
         } else {
             return scoreName(playerOne.score) + "-" + scoreName(playerTwo.score);
         }
+    }
+
+    public String hasAdvantageOrWin(Player leadingPlayer, Player losingPlayer) {
+        if (leadingPlayer.hasAdvantage(losingPlayer)) 
+                    return "Advantage " + leadingPlayer.playerName;
+                else 
+                    return "Win for " + leadingPlayer.playerName;
     }
 
     public Score getScoreObject(int playerScore) {
