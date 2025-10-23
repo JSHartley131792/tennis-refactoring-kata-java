@@ -66,7 +66,7 @@ public class TennisGame2 implements TennisGame {
                 score = playerOneResult + "-" + playerTwoResult;
             }
             if (playerTwoPoints >= 3) {
-                score = "Advantage player1";
+                score = "Advantage " + player1Name;
             }
         }
 
