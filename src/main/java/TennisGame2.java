@@ -30,30 +30,19 @@ public class TennisGame2 implements TennisGame {
             }
         }
 
-        if (playerOnePoints > 0 && playerTwoPoints == 0) {
-            if (playerOnePoints == 1)
-                playerOneResult = "Fifteen";
-            if (playerOnePoints == 2)
-                playerOneResult = "Thirty";
-            if (playerOnePoints == 3)
-                playerOneResult = "Forty";
-
-            playerTwoResult = "Love";
-            score = playerOneResult + "-" + playerTwoResult;
-        }
-        if (playerTwoPoints > 0 && playerOnePoints == 0) {
-            if (playerTwoPoints == 1)
-                playerTwoResult = "Fifteen";
-            if (playerTwoPoints == 2)
-                playerTwoResult = "Thirty";
-            if (playerTwoPoints == 3)
-                playerTwoResult = "Forty";
-
-            playerOneResult = "Love";
-            score = playerOneResult + "-" + playerTwoResult;
-        }
-
         if (playerOnePoints > playerTwoPoints) {
+            if (playerOnePoints > 0 && playerTwoPoints == 0) {
+                if (playerOnePoints == 1)
+                    playerOneResult = "Fifteen";
+                if (playerOnePoints == 2)
+                    playerOneResult = "Thirty";
+                if (playerOnePoints == 3)
+                    playerOneResult = "Forty";
+
+                playerTwoResult = "Love";
+                score = playerOneResult + "-" + playerTwoResult;
+            }
+
             if (playerOnePoints < 4) {
                 if (playerOnePoints == 2)
                     playerOneResult = "Thirty";
@@ -68,9 +57,25 @@ public class TennisGame2 implements TennisGame {
             if (playerTwoPoints >= 3) {
                 score = "Advantage " + player1Name;
             }
+
+            if (playerOnePoints >= 4 && playerTwoPoints >= 0 && (playerOnePoints - playerTwoPoints) >= 2) {
+                score = "Win for " + player1Name;
+            }
         }
 
         if (playerTwoPoints > playerOnePoints) {
+            if (playerTwoPoints > 0 && playerOnePoints == 0) {
+                if (playerTwoPoints == 1)
+                    playerTwoResult = "Fifteen";
+                if (playerTwoPoints == 2)
+                    playerTwoResult = "Thirty";
+                if (playerTwoPoints == 3)
+                    playerTwoResult = "Forty";
+
+                playerOneResult = "Love";
+                score = playerOneResult + "-" + playerTwoResult;
+            }
+
             if (playerTwoPoints < 4) {
                 if (playerTwoPoints == 2)
                     playerTwoResult = "Thirty";
@@ -85,13 +90,10 @@ public class TennisGame2 implements TennisGame {
             if (playerOnePoints >= 3) {
                 score = "Advantage " + player2Name;
             }
-        }
 
-        if (playerOnePoints >= 4 && playerTwoPoints >= 0 && (playerOnePoints - playerTwoPoints) >= 2) {
-            score = "Win for " + player1Name;
-        }
-        if (playerTwoPoints >= 4 && playerOnePoints >= 0 && (playerTwoPoints - playerOnePoints) >= 2) {
-            score = "Win for " + player2Name;
+            if (playerTwoPoints >= 4 && playerOnePoints >= 0 && (playerTwoPoints - playerOnePoints) >= 2) {
+                score = "Win for " + player2Name;
+            }
         }
         return score;
     }
