@@ -38,14 +38,7 @@ public class TennisGame2 implements TennisGame {
                 return advantageForPlayer(player1Name);
             }
             if (playerOnePoints > 0 && playerTwoPoints == 0) {
-                playerOneResult = "Fifteen";
-                if (playerOnePoints == 2)
-                    playerOneResult = "Thirty";
-                if (playerOnePoints == 3)
-                    playerOneResult = "Forty";
-
-                playerTwoResult = "Love";
-                return playerOneResult + "-" + playerTwoResult;
+                return leadingToLove(playerOnePoints, player1Name);
             }
 
             if (playerOnePoints < 4) {
@@ -72,15 +65,7 @@ public class TennisGame2 implements TennisGame {
             }
 
             if (playerTwoPoints > 0 && playerOnePoints == 0) {
-                if (playerTwoPoints == 1)
-                    playerTwoResult = "Fifteen";
-                if (playerTwoPoints == 2)
-                    playerTwoResult = "Thirty";
-                if (playerTwoPoints == 3)
-                    playerTwoResult = "Forty";
-
-                playerOneResult = "Love";
-                return playerOneResult + "-" + playerTwoResult;
+                return leadingToLove(playerTwoPoints, player2Name);
             }
 
             if (playerTwoPoints < 4) {
@@ -104,6 +89,22 @@ public class TennisGame2 implements TennisGame {
 
     public String advantageForPlayer(String playerName) {
         return "Advantage " + playerName;
+    }
+
+    public String leadingToLove(int leadingPoints, String leadingPlayerName) {
+        String leadingResult;
+        if (leadingPoints == 1)
+            leadingResult = "Fifteen";
+        else if (leadingPoints == 2)
+            leadingResult = "Thirty";
+        else
+            leadingResult = "Forty";
+
+        if (leadingPlayerName == player1Name) {
+            return leadingResult + "-Love";
+        } else {
+            return "Love-" + leadingResult;
+        }
     }
 
     public void SetP1Score(int number) {
