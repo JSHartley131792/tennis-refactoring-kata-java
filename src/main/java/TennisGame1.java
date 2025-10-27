@@ -1,76 +1,127 @@
 
 public class TennisGame1 implements TennisGame {
-    
-    private int m_score1 = 0;
-    private int m_score2 = 0;
-    private String player1Name;
-    private String player2Name;
 
+    class Player {
+        private String playerName;
+        private int score;
+        public Player(String playerName, int score) {
+            this.playerName = playerName;
+            this.score = score;
+        }
+        boolean couldWin() {
+            return score >=4;
+        }
+        boolean isBeating(Player opponent) {
+            return score > opponent.score;
+        }
+        boolean hasAdvantage(Player opponent) {
+            return couldWin() && score - opponent.score == 1;
+        }
+    }
+
+    private Player playerOne;
+    private Player playerTwo;
+    
     public TennisGame1(String player1Name, String player2Name) {
-        this.player1Name = player1Name;
-        this.player2Name = player2Name;
+        this.playerOne = new Player(player1Name, 0);
+        this.playerTwo = new Player(player2Name, 0);
     }
 
     public void wonPoint(String playerName) {
         if (playerName == "player1")
-            m_score1 += 1;
+            playerOne.score += 1;
         else
-            m_score2 += 1;
+            playerTwo.score += 1;
     }
 
     public String getScore() {
-        String score = "";
-        int tempScore=0;
-        if (m_score1==m_score2)
-        {
-            switch (m_score1)
-            {
-                case 0:
-                        score = "Love-All";
-                    break;
-                case 1:
-                        score = "Fifteen-All";
-                    break;
-                case 2:
-                        score = "Thirty-All";
-                    break;
-                default:
-                        score = "Deuce";
-                    break;
-                
+        if (playerOne.score == playerTwo.score) {
+            return tieScore(playerOne.score);
+        } else if (playerOne.couldWin() || playerTwo.couldWin()) {
+            if (playerOne.isBeating(playerTwo)) {
+                return hasAdvantageOrWin(playerOne, playerTwo);
+            } else {
+                return hasAdvantageOrWin(playerTwo, playerOne);
             }
+        } else {
+            return scoreName(playerOne.score) + "-" + scoreName(playerTwo.score);
         }
-        else if (m_score1>=4 || m_score2>=4)
-        {
-            int minusResult = m_score1-m_score2;
-            if (minusResult==1) score ="Advantage player1";
-            else if (minusResult ==-1) score ="Advantage player2";
-            else if (minusResult>=2) score = "Win for player1";
-            else score ="Win for player2";
+    }
+
+    public String hasAdvantageOrWin(Player leadingPlayer, Player losingPlayer) {
+        if (leadingPlayer.hasAdvantage(losingPlayer)) 
+                    return "Advantage " + leadingPlayer.playerName;
+                else 
+                    return "Win for " + leadingPlayer.playerName;
+    }
+
+    public Score getScoreObject(int playerScore) {
+        return switch (playerScore) {
+            case 0 -> new Love();
+            case 1 -> new Fifteen();
+            case 2 -> new Thirty();
+            default -> new Forty();
+        };
+    }
+
+    public String scoreName(int playerScore) {
+        Score score = getScoreObject(playerScore);
+        return score.getScoreName();
+    }
+
+    public String tieScore(int player1Score) {
+        Score score = getScoreObject(player1Score);
+        return score.getTieString();
+    }
+
+    abstract class Score {
+        String scoreName;
+
+        abstract String getScoreName();
+
+        String getTieString() {
+            return getScoreName() + "-All";
+        };
+    }
+
+    class Love extends Score {
+        String scoreName;
+
+        @Override
+        public String getScoreName() {
+            return "Love";
         }
-        else
-        {
-            for (int i=1; i<3; i++)
-            {
-                if (i==1) tempScore = m_score1;
-                else { score+="-"; tempScore = m_score2;}
-                switch(tempScore)
-                {
-                    case 0:
-                        score+="Love";
-                        break;
-                    case 1:
-                        score+="Fifteen";
-                        break;
-                    case 2:
-                        score+="Thirty";
-                        break;
-                    case 3:
-                        score+="Forty";
-                        break;
-                }
-            }
+    }
+
+    class Fifteen extends Score {
+        String scoreName;
+
+        @Override
+        public String getScoreName() {
+            return "Fifteen";
         }
-        return score;
+    }
+
+    class Thirty extends Score {
+        String scoreName;
+
+        @Override
+        public String getScoreName() {
+            return "Thirty";
+        }
+    }
+
+    class Forty extends Score {
+        String scoreName;
+
+        @Override
+        public String getScoreName() {
+            return "Forty";
+        }
+
+        @Override
+        public String getTieString() {
+            return "Deuce";
+        };
     }
 }
