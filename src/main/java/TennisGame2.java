@@ -27,21 +27,14 @@ public class TennisGame2 implements TennisGame {
             if (playerOnePoints >= 3) {
                 return "Deuce";
             }
-        }
-
-        if (playerOnePoints > playerTwoPoints) {
+        } else if (playerOnePoints > playerTwoPoints) {
             if (playerOnePoints >= 4 && playerTwoPoints >= 0 && (playerOnePoints - playerTwoPoints) >= 2) {
                 return winForPlayer(player1Name);
-            }
-
-            if (playerTwoPoints >= 3) {
+            } else if (playerTwoPoints >= 3) {
                 return advantageForPlayer(player1Name);
-            }
-            if (playerOnePoints > 0 && playerTwoPoints == 0) {
+            } else if (playerOnePoints > 0 && playerTwoPoints == 0) {
                 return leadingToLove(playerOnePoints, player1Name);
-            }
-
-            if (playerOnePoints < 4) {
+            } else {
                 if (playerOnePoints == 2)
                     playerOneResult = "Thirty";
                 if (playerOnePoints == 3)
@@ -53,22 +46,14 @@ public class TennisGame2 implements TennisGame {
                 return playerOneResult + "-" + playerTwoResult;
             }
 
-        }
-
-        if (playerTwoPoints > playerOnePoints) {
+        } else {
             if (playerTwoPoints >= 4 && playerOnePoints >= 0 && (playerTwoPoints - playerOnePoints) >= 2) {
                 return winForPlayer(player2Name);
-            }
-
-            if (playerOnePoints >= 3) {
+            } else if (playerOnePoints >= 3) {
                 return advantageForPlayer(player2Name);
-            }
-
-            if (playerTwoPoints > 0 && playerOnePoints == 0) {
+            } else if (playerTwoPoints > 0 && playerOnePoints == 0) {
                 return leadingToLove(playerTwoPoints, player2Name);
-            }
-
-            if (playerTwoPoints < 4) {
+            } else {
                 if (playerTwoPoints == 2)
                     playerTwoResult = "Thirty";
                 if (playerTwoPoints == 3)
