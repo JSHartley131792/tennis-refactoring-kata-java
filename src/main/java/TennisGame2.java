@@ -31,7 +31,7 @@ public class TennisGame2 implements TennisGame {
 
         if (playerOnePoints > playerTwoPoints) {
             if (playerOnePoints >= 4 && playerTwoPoints >= 0 && (playerOnePoints - playerTwoPoints) >= 2) {
-                return "Win for " + player1Name;
+                return winForPlayer(player1Name);
             }
 
             if (playerTwoPoints >= 3) {
@@ -64,7 +64,7 @@ public class TennisGame2 implements TennisGame {
 
         if (playerTwoPoints > playerOnePoints) {
             if (playerTwoPoints >= 4 && playerOnePoints >= 0 && (playerTwoPoints - playerOnePoints) >= 2) {
-                return "Win for " + player2Name;
+                return winForPlayer(player2Name);
             }
 
             if (playerOnePoints >= 3) {
@@ -96,6 +96,10 @@ public class TennisGame2 implements TennisGame {
             }
         }
         return score;
+    }
+
+    public String winForPlayer(String playerName) {
+        return "Win for " + playerName;
     }
 
     public void SetP1Score(int number) {
