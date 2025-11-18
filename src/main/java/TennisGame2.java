@@ -100,7 +100,7 @@ public class TennisGame2 implements TennisGame {
     }
 
     public void wonPoint(String player) {
-        if (player == "player1")
+        if (player == playerOne.name)
             incrementPlayerScore(playerOne);
         else
             incrementPlayerScore(playerTwo);
