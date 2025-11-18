@@ -41,15 +41,7 @@ public class TennisGame2 implements TennisGame {
             } else if (playerOne.points > 0 && playerTwo.points == 0) {
                 return leadingToLove(playerOne.points, playerOne.name);
             } else {
-                if (playerOne.points == 2)
-                    playerOneResult = "Thirty";
-                if (playerOne.points == 3)
-                    playerOneResult = "Forty";
-                if (playerTwo.points == 1)
-                    playerTwoResult = "Fifteen";
-                if (playerTwo.points == 2)
-                    playerTwoResult = "Thirty";
-                return playerOneResult + "-" + playerTwoResult;
+                return leadingInGame(playerOne, playerTwo);
             }
 
         } else {
@@ -60,18 +52,28 @@ public class TennisGame2 implements TennisGame {
             } else if (playerTwo.points > 0 && playerOne.points == 0) {
                 return leadingToLove(playerTwo.points, playerTwo.name);
             } else {
-                if (playerTwo.points == 2)
-                    playerTwoResult = "Thirty";
-                if (playerTwo.points == 3)
-                    playerTwoResult = "Forty";
-                if (playerOne.points == 1)
-                    playerOneResult = "Fifteen";
-                if (playerOne.points == 2)
-                    playerOneResult = "Thirty";
-                return playerOneResult + "-" + playerTwoResult;
+                return leadingInGame(playerTwo, playerOne);
             }
         }
         return score;
+    }
+
+    public String leadingInGame(Player leadingPlayer, Player losingPlayer) {
+        String leadingResult = "";
+        String losingResult = "";
+        if (leadingPlayer.points == 2)
+            leadingResult = "Thirty";
+        if (leadingPlayer.points == 3)
+            leadingResult = "Forty";
+        if (losingPlayer.points == 1)
+            losingResult = "Fifteen";
+        if (losingPlayer.points == 2)
+            losingResult = "Thirty";
+        if(leadingPlayer.equals(playerOne)) {
+            return leadingResult + "-" + losingResult;
+        } else {
+            return losingResult + "-" + leadingResult;
+        }
     }
 
     public String winForPlayer(String playerName) {
