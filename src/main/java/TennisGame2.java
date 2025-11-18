@@ -34,28 +34,23 @@ public class TennisGame2 implements TennisGame {
                 return "Deuce";
             }
         } else if (playerOne.points > playerTwo.points) {
-            if (playerOne.points >= 4 && playerTwo.points >= 0 && (playerOne.points - playerTwo.points) >= 2) {
-                return winForPlayer(playerOne.name);
-            } else if (playerTwo.points >= 3) {
-                return advantageForPlayer(playerOne.name);
-            } else if (playerOne.points > 0 && playerTwo.points == 0) {
-                return leadingToLove(playerOne.points, playerOne.name);
-            } else {
-                return leadingInGame(playerOne, playerTwo);
-            }
-
+            return leadingScore(playerOne, playerTwo);
         } else {
-            if (playerTwo.points >= 4 && playerOne.points >= 0 && (playerTwo.points - playerOne.points) >= 2) {
-                return winForPlayer(playerTwo.name);
-            } else if (playerOne.points >= 3) {
-                return advantageForPlayer(playerTwo.name);
-            } else if (playerTwo.points > 0 && playerOne.points == 0) {
-                return leadingToLove(playerTwo.points, playerTwo.name);
-            } else {
-                return leadingInGame(playerTwo, playerOne);
-            }
+            return leadingScore(playerTwo, playerOne);
         }
         return score;
+    }
+
+    public String leadingScore(Player leadingPlayer,Player losingPlayer) {
+        if (leadingPlayer.points >= 4 && losingPlayer.points >= 0 && (leadingPlayer.points - losingPlayer.points) >= 2) {
+                return winForPlayer(leadingPlayer.name);
+            } else if (losingPlayer.points >= 3) {
+                return advantageForPlayer(leadingPlayer.name);
+            } else if (leadingPlayer.points > 0 && losingPlayer.points == 0) {
+                return leadingToLove(leadingPlayer.points, leadingPlayer.name);
+            } else {
+                return leadingInGame(leadingPlayer, losingPlayer);
+            }
     }
 
     public String leadingInGame(Player leadingPlayer, Player losingPlayer) {
