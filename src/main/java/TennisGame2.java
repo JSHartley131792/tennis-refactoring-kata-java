@@ -96,7 +96,7 @@ public class TennisGame2 implements TennisGame {
         playerOnePoints++;
     }
 
-    public void P2Score() {
+    public void incrementPlayerTwoScore() {
         playerTwoPoints++;
     }
 
@@ -104,6 +104,6 @@ public class TennisGame2 implements TennisGame {
         if (player == "player1")
             incrementPlayerOneScore();
         else
-            P2Score();
+            incrementPlayerTwoScore();
     }
 }
