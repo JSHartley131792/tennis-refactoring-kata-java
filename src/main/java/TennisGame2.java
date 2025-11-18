@@ -40,7 +40,7 @@ public class TennisGame2 implements TennisGame {
             } else if (playerOne.points > 0 && playerTwo.points == 0) {
                 return leadingToLove(playerOne, playerTwo);
             } else {
-                leadingInGame(playerOne, playerTwo);
+                return leadingInGame(playerOne, playerTwo);
             }
         } else {
             if (playerTwo.points >= 4 && playerOne.points >= 0 && (playerTwo.points - playerOne.points) >= 2) {
@@ -50,13 +50,13 @@ public class TennisGame2 implements TennisGame {
             } else if (playerTwo.points > 0 && playerOne.points == 0) {
                 return leadingToLove(playerTwo, playerOne);
             } else {
-                leadingInGame(playerTwo, playerOne);
+                return leadingInGame(playerTwo, playerOne);
             }
         }
         return playerOne.result + "-" + playerTwo.result;
     }
 
-    public void leadingInGame(Player leadingPlayer, Player losingPlayer) {
+    public String leadingInGame(Player leadingPlayer, Player losingPlayer) {
         String leadingResult = "";
         String losingResult = "";
         if (leadingPlayer.points == 2)
@@ -69,6 +69,7 @@ public class TennisGame2 implements TennisGame {
             losingResult = "Thirty";
         leadingPlayer.result = leadingResult;
         losingPlayer.result = losingResult;
+        return playerOne.result + "-" + playerTwo.result;
     }
 
     public String winForPlayer(String playerName) {
