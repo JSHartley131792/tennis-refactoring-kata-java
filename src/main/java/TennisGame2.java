@@ -98,18 +98,14 @@ public class TennisGame2 implements TennisGame {
         }
     }
 
-    public void incrementPlayerOneScore() {
-        playerOne.points++;
-    }
-
-    public void incrementPlayerTwoScore() {
-        playerTwo.points++;
+    public void incrementPlayerScore(Player player) {
+        player.points++;
     }
 
     public void wonPoint(String player) {
         if (player == "player1")
-            incrementPlayerOneScore();
+            incrementPlayerScore(playerOne);
         else
-            incrementPlayerTwoScore();
+            incrementPlayerScore(playerTwo);
     }
 }
