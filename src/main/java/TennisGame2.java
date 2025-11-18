@@ -1,66 +1,72 @@
 
 public class TennisGame2 implements TennisGame {
-    public int playerOnePoints = 0;
-    public int playerTwoPoints = 0;
+    public class Player {
+        String name;
+        int points;
+        public Player(String playerName, int playerPoints) {
+            this.name = playerName;
+            this.points = playerPoints;
+        }
+    }
 
     public String playerOneResult = "";
     public String playerTwoResult = "";
-    private String player1Name;
-    private String player2Name;
+    public Player playerOne;
+    public Player playerTwo;
 
     public TennisGame2(String player1Name, String player2Name) {
-        this.player1Name = player1Name;
-        this.player2Name = player2Name;
+        this.playerOne = new Player(player1Name, 0);
+        this.playerTwo = new Player(player2Name, 0);
     }
 
     public String getScore() {
         String score = "";
-        if (playerOnePoints == playerTwoPoints) {
-            if (playerOnePoints < 4) {
-                if (playerOnePoints == 0)
+        if (playerOne.points == playerTwo.points) {
+            if (playerOne.points < 4) {
+                if (playerOne.points == 0)
                     return "Love-All";
-                if (playerOnePoints == 1)
+                if (playerOne.points == 1)
                     return "Fifteen-All";
-                if (playerOnePoints == 2)
+                if (playerOne.points == 2)
                     return "Thirty-All";
             }
-            if (playerOnePoints >= 3) {
+            if (playerOne.points >= 3) {
                 return "Deuce";
             }
-        } else if (playerOnePoints > playerTwoPoints) {
-            if (playerOnePoints >= 4 && playerTwoPoints >= 0 && (playerOnePoints - playerTwoPoints) >= 2) {
-                return winForPlayer(player1Name);
-            } else if (playerTwoPoints >= 3) {
-                return advantageForPlayer(player1Name);
-            } else if (playerOnePoints > 0 && playerTwoPoints == 0) {
-                return leadingToLove(playerOnePoints, player1Name);
+        } else if (playerOne.points > playerTwo.points) {
+            if (playerOne.points >= 4 && playerTwo.points >= 0 && (playerOne.points - playerTwo.points) >= 2) {
+                return winForPlayer(playerOne.name);
+            } else if (playerTwo.points >= 3) {
+                return advantageForPlayer(playerOne.name);
+            } else if (playerOne.points > 0 && playerTwo.points == 0) {
+                return leadingToLove(playerOne.points, playerOne.name);
             } else {
-                if (playerOnePoints == 2)
+                if (playerOne.points == 2)
                     playerOneResult = "Thirty";
-                if (playerOnePoints == 3)
+                if (playerOne.points == 3)
                     playerOneResult = "Forty";
-                if (playerTwoPoints == 1)
+                if (playerTwo.points == 1)
                     playerTwoResult = "Fifteen";
-                if (playerTwoPoints == 2)
+                if (playerTwo.points == 2)
                     playerTwoResult = "Thirty";
                 return playerOneResult + "-" + playerTwoResult;
             }
 
         } else {
-            if (playerTwoPoints >= 4 && playerOnePoints >= 0 && (playerTwoPoints - playerOnePoints) >= 2) {
-                return winForPlayer(player2Name);
-            } else if (playerOnePoints >= 3) {
-                return advantageForPlayer(player2Name);
-            } else if (playerTwoPoints > 0 && playerOnePoints == 0) {
-                return leadingToLove(playerTwoPoints, player2Name);
+            if (playerTwo.points >= 4 && playerOne.points >= 0 && (playerTwo.points - playerOne.points) >= 2) {
+                return winForPlayer(playerTwo.name);
+            } else if (playerOne.points >= 3) {
+                return advantageForPlayer(playerTwo.name);
+            } else if (playerTwo.points > 0 && playerOne.points == 0) {
+                return leadingToLove(playerTwo.points, playerTwo.name);
             } else {
-                if (playerTwoPoints == 2)
+                if (playerTwo.points == 2)
                     playerTwoResult = "Thirty";
-                if (playerTwoPoints == 3)
+                if (playerTwo.points == 3)
                     playerTwoResult = "Forty";
-                if (playerOnePoints == 1)
+                if (playerOne.points == 1)
                     playerOneResult = "Fifteen";
-                if (playerOnePoints == 2)
+                if (playerOne.points == 2)
                     playerOneResult = "Thirty";
                 return playerOneResult + "-" + playerTwoResult;
             }
@@ -85,7 +91,7 @@ public class TennisGame2 implements TennisGame {
         else
             leadingResult = "Forty";
 
-        if (leadingPlayerName == player1Name) {
+        if (leadingPlayerName == playerOne.name) {
             return leadingResult + "-Love";
         } else {
             return "Love-" + leadingResult;
@@ -93,11 +99,11 @@ public class TennisGame2 implements TennisGame {
     }
 
     public void incrementPlayerOneScore() {
-        playerOnePoints++;
+        playerOne.points++;
     }
 
     public void incrementPlayerTwoScore() {
-        playerTwoPoints++;
+        playerTwo.points++;
     }
 
     public void wonPoint(String player) {
