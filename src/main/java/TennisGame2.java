@@ -32,7 +32,7 @@ public class TennisGame2 implements TennisGame {
             if (playerOne.points < 3) {
                 return playerOne.result + "-All";
             }
-            if (playerOne.points >= 3) {
+            else {
                 return "Deuce";
             }
         } else if (playerOne.points > playerTwo.points) {
@@ -40,7 +40,6 @@ public class TennisGame2 implements TennisGame {
         } else {
             return leadingScore(playerTwo, playerOne);
         }
-        return playerOne.result + "-" + playerTwo.result;
     }
 
     public String leadingScore(Player leadingPlayer, Player losingPlayer) {
