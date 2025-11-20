@@ -42,7 +42,7 @@ public class TennisGame2 implements TennisGame {
     }
 
     public String leadingScore(Player leadingPlayer, Player losingPlayer) {
-        if (leadingPlayer.points >= 4 && losingPlayer.points >= 0
+        if (leadingPlayer.points >= 4
                 && (leadingPlayer.points - losingPlayer.points) >= 2) {
             return winForPlayer(leadingPlayer.name);
         } else if (losingPlayer.points >= 3) {
