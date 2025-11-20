@@ -55,18 +55,14 @@ public class TennisGame2 implements TennisGame {
     }
 
     public String leadingInGame(Player leadingPlayer, Player losingPlayer) {
-        String leadingResult = "";
-        String losingResult = "";
         if (leadingPlayer.points == 2)
-            leadingResult = "Thirty";
+            leadingPlayer.result = "Thirty";
         if (leadingPlayer.points == 3)
-            leadingResult = "Forty";
+            leadingPlayer.result = "Forty";
         if (losingPlayer.points == 1)
-            losingResult = "Fifteen";
+            losingPlayer.result = "Fifteen";
         if (losingPlayer.points == 2)
-            losingResult = "Thirty";
-        leadingPlayer.result = leadingResult;
-        losingPlayer.result = losingResult;
+            losingPlayer.result = "Thirty";
         return playerOne.result + "-" + playerTwo.result;
     }
 
