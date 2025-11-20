@@ -11,6 +11,10 @@ public class TennisGame2 implements TennisGame {
             this.result = resultString;
         }
 
+        boolean isBeating(Player otherPlayer) {
+            return points > otherPlayer.points;
+        }
+
         boolean hasBeaten(Player otherPlayer) {
             return points >= 4 && (otherPlayer.points <= points - 2);
         }
@@ -42,7 +46,7 @@ public class TennisGame2 implements TennisGame {
             } else {
                 return playerOne.result + "-All";
             }
-        } else if (playerOne.points > playerTwo.points) {
+        } else if (playerOne.isBeating(playerTwo)) {
             return leadingScore(playerOne, playerTwo);
         } else {
             return leadingScore(playerTwo, playerOne);
