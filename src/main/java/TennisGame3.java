@@ -2,7 +2,7 @@
 public class TennisGame3 implements TennisGame {
     
     private int playerOneScore;
-    private int p2;
+    private int playerTwoScore;
     private String p1N;
     private String p2N;
 
@@ -13,15 +13,15 @@ public class TennisGame3 implements TennisGame {
 
     public String getScore() {
         String s;
-        if (playerOneScore < 4 && p2 < 4 && !(playerOneScore + p2 == 6)) {
+        if (playerOneScore < 4 && playerTwoScore < 4 && !(playerOneScore + playerTwoScore == 6)) {
             String[] p = new String[]{"Love", "Fifteen", "Thirty", "Forty"}; 
             s = p[playerOneScore];
-            return (playerOneScore == p2) ? s + "-All" : s + "-" + p[p2];
+            return (playerOneScore == playerTwoScore) ? s + "-All" : s + "-" + p[playerTwoScore];
         } else {
-            if (playerOneScore == p2)
+            if (playerOneScore == playerTwoScore)
                 return "Deuce";
-            s = playerOneScore > p2 ? p1N : p2N;
-            return ((playerOneScore-p2)*(playerOneScore-p2) == 1) ? "Advantage " + s : "Win for " + s;
+            s = playerOneScore > playerTwoScore ? p1N : p2N;
+            return ((playerOneScore-playerTwoScore)*(playerOneScore-playerTwoScore) == 1) ? "Advantage " + s : "Win for " + s;
         }
     }
     
@@ -29,7 +29,7 @@ public class TennisGame3 implements TennisGame {
         if (playerName == "player1")
             this.playerOneScore += 1;
         else
-            this.p2 += 1;
+            this.playerTwoScore += 1;
         
     }
 
