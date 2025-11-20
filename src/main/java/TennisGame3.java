@@ -10,19 +10,18 @@ public class TennisGame3 implements TennisGame {
         this.playerOneName = playerOneName;
         this.playerTwoName = playerTwoName;
     }
-    
+
     String[] scoreStringArray = new String[]{"Love", "Fifteen", "Thirty", "Forty"}; 
 
     public String getScore() {
-        String s;
         if (playerOneScore < 4 && playerTwoScore < 4 && !(playerOneScore + playerTwoScore == 6)) {
-            s = scoreStringArray[playerOneScore];
-            return (playerOneScore == playerTwoScore) ? s + "-All" : s + "-" + scoreStringArray[playerTwoScore];
+            String scoreString = scoreStringArray[playerOneScore];
+            return (playerOneScore == playerTwoScore) ? scoreString + "-All" : scoreString + "-" + scoreStringArray[playerTwoScore];
         } else {
             if (playerOneScore == playerTwoScore)
                 return "Deuce";
-            s = playerOneScore > playerTwoScore ? playerOneName : playerTwoName;
-            return ((playerOneScore-playerTwoScore)*(playerOneScore-playerTwoScore) == 1) ? "Advantage " + s : "Win for " + s;
+            String leadingPlayer = playerOneScore > playerTwoScore ? playerOneName : playerTwoName;
+            return ((playerOneScore-playerTwoScore)*(playerOneScore-playerTwoScore) == 1) ? "Advantage " + leadingPlayer : "Win for " + leadingPlayer;
         }
     }
     
