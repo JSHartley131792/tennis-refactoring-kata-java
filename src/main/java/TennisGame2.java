@@ -30,12 +30,7 @@ public class TennisGame2 implements TennisGame {
     public String getScore() {
         if (playerOne.points == playerTwo.points) {
             if (playerOne.points < 3) {
-                if (playerOne.points == 0)
-                    return "Love-All";
-                if (playerOne.points == 1)
-                    return "Fifteen-All";
-                if (playerOne.points == 2)
-                    return "Thirty-All";
+                return playerOne.result + "-All";
             }
             if (playerOne.points >= 3) {
                 return "Deuce";
