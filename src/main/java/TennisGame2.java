@@ -47,7 +47,7 @@ public class TennisGame2 implements TennisGame {
             return winForPlayer(leadingPlayer.name);
         } else if (losingPlayer.points >= 3) {
             return advantageForPlayer(leadingPlayer.name);
-        } else if (leadingPlayer.points > 0 && losingPlayer.points == 0) {
+        } else if (losingPlayer.points == 0) {
             return leadingToLove(leadingPlayer, losingPlayer);
         } else {
             return leadingInGame(leadingPlayer, losingPlayer);
