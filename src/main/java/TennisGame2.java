@@ -75,15 +75,12 @@ public class TennisGame2 implements TennisGame {
     }
 
     public String leadingToLove(Player leadingPlayer, Player losingPlayer) {
-        String leadingResult;
         if (leadingPlayer.points == 1)
-            leadingResult = "Fifteen";
+            leadingPlayer.result = "Fifteen";
         else if (leadingPlayer.points == 2)
-            leadingResult = "Thirty";
+            leadingPlayer.result = "Thirty";
         else
-            leadingResult = "Forty";
-
-        leadingPlayer.result = leadingResult;
+            leadingPlayer.result = "Forty";
         losingPlayer.result = "Love";
         return playerOne.result + "-" + playerTwo.result;
     }
