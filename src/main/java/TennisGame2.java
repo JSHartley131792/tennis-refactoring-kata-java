@@ -3,21 +3,28 @@ public class TennisGame2 implements TennisGame {
     public class Player {
         String name;
         int points;
-        String result;
+        ScoreString result;
 
-        public Player(String playerName, int playerPoints, String resultString) {
+        public Player(String playerName, int playerPoints, ScoreString resultString) {
             this.name = playerName;
             this.points = playerPoints;
             this.result = resultString;
         }
     }
 
+    enum ScoreString {
+        Love,
+        Fifteen,
+        Thirty,
+        Forty;
+    }
+
     public Player playerOne;
     public Player playerTwo;
 
     public TennisGame2(String player1Name, String player2Name) {
-        this.playerOne = new Player(player1Name, 0, "");
-        this.playerTwo = new Player(player2Name, 0, "");
+        this.playerOne = new Player(player1Name, 0, ScoreString.Love);
+        this.playerTwo = new Player(player2Name, 0, ScoreString.Love);
     }
 
     public String getScore() {
@@ -47,23 +54,9 @@ public class TennisGame2 implements TennisGame {
             return winForPlayer(leadingPlayer.name);
         } else if (losingPlayer.points >= 3) {
             return advantageForPlayer(leadingPlayer.name);
-        } else if (losingPlayer.points == 0) {
-            return leadingToLove(leadingPlayer, losingPlayer);
         } else {
-            return leadingInGame(leadingPlayer, losingPlayer);
+            return playerOne.result + "-" + playerTwo.result;
         }
-    }
-
-    public String leadingInGame(Player leadingPlayer, Player losingPlayer) {
-        if (leadingPlayer.points == 2)
-            leadingPlayer.result = "Thirty";
-        if (leadingPlayer.points == 3)
-            leadingPlayer.result = "Forty";
-        if (losingPlayer.points == 1)
-            losingPlayer.result = "Fifteen";
-        if (losingPlayer.points == 2)
-            losingPlayer.result = "Thirty";
-        return playerOne.result + "-" + playerTwo.result;
     }
 
     public String winForPlayer(String playerName) {
@@ -74,19 +67,22 @@ public class TennisGame2 implements TennisGame {
         return "Advantage " + playerName;
     }
 
-    public String leadingToLove(Player leadingPlayer, Player losingPlayer) {
-        if (leadingPlayer.points == 1)
-            leadingPlayer.result = "Fifteen";
-        else if (leadingPlayer.points == 2)
-            leadingPlayer.result = "Thirty";
-        else
-            leadingPlayer.result = "Forty";
-        losingPlayer.result = "Love";
-        return playerOne.result + "-" + playerTwo.result;
-    }
-
     public void incrementPlayerScore(Player player) {
         player.points++;
+        switch (player.points) {
+            case 0:
+                player.result = ScoreString.Love;
+                break;
+            case 1:
+                player.result = ScoreString.Fifteen;
+                break;
+            case 2:
+                player.result = ScoreString.Thirty;
+                break;
+            default:
+                player.result = ScoreString.Forty;
+                break;
+        }
     }
 
     public void wonPoint(String playerName) {
