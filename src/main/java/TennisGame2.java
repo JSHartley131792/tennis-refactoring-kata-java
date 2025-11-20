@@ -14,6 +14,10 @@ public class TennisGame2 implements TennisGame {
         boolean hasBeaten(Player otherPlayer) {
             return points >= 4 && (otherPlayer.points <= points - 2);
         }
+
+        boolean couldWin() {
+            return points >= 3;
+        }
     }
 
     enum ScoreString {
@@ -49,7 +53,7 @@ public class TennisGame2 implements TennisGame {
     public String leadingScore(Player leadingPlayer, Player losingPlayer) {
         if (leadingPlayer.hasBeaten(losingPlayer)) {
             return winForPlayer(leadingPlayer.name);
-        } else if (losingPlayer.points >= 3) {
+        } else if (losingPlayer.couldWin()) {
             return advantageForPlayer(leadingPlayer.name);
         } else {
             return playerOne.result + "-" + playerTwo.result;
