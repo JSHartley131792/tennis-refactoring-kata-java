@@ -29,7 +29,7 @@ public class TennisGame2 implements TennisGame {
 
     public String getScore() {
         if (playerOne.points == playerTwo.points) {
-            if (playerOne.points < 4) {
+            if (playerOne.points < 3) {
                 if (playerOne.points == 0)
                     return "Love-All";
                 if (playerOne.points == 1)
