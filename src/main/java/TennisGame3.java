@@ -10,11 +10,12 @@ public class TennisGame3 implements TennisGame {
         this.playerOneName = playerOneName;
         this.playerTwoName = playerTwoName;
     }
+    
+    String[] scoreStringArray = new String[]{"Love", "Fifteen", "Thirty", "Forty"}; 
 
     public String getScore() {
         String s;
         if (playerOneScore < 4 && playerTwoScore < 4 && !(playerOneScore + playerTwoScore == 6)) {
-            String[] scoreStringArray = new String[]{"Love", "Fifteen", "Thirty", "Forty"}; 
             s = scoreStringArray[playerOneScore];
             return (playerOneScore == playerTwoScore) ? s + "-All" : s + "-" + scoreStringArray[playerTwoScore];
         } else {
